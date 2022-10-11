@@ -1,0 +1,8 @@
+{{ form_start(form) }}
+<div class="form-group py-1">
+    {{ form_row(form.prenom,{'attr':{'class':'form-control'}}) }}
+</div>
+<div class="form-group py-1">
+    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+</div>
+{{ form_end(form) }}

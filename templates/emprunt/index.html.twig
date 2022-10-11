@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Emprunt index{% endblock %}
+
+{% block body %}
+    <h1 class="py-2 d-flex justify-content-center text-uppercase">Les Emprunt</h1>
+
+    <a class="btn btn-outline-primary" href="{{ path('nouveau_emprunt') }}"><i class="fas fa-plus"></i> Nouveau emprunt</a>
+
+    <table class="table">
+        <thead>
+            <tr class="bg-info text-white fw-bolder">
+                <th>Identifiant</th>
+                <th>Date sortie</th>
+                <th>Date rensu</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for emprunt in emprunts|reverse %}
+            <tr>
+                <td>{{ emprunt.id }}</td>
+                <td>{{ emprunt.dateSortie|date('d/m/y') }}</td>
+                <td>{{ emprunt.dateRendu|date('d/m/y') }}</td>
+                <td>
+                    <a href="{{ path('infos_emprunt', {'id': emprunt.id}) }}"><i class="fas fa-eye"></i></a>
+                    <a href="{{ path('modifier_emprunt', {'id': emprunt.id}) }}"><i class="fas fa-edit"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

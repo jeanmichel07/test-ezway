@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Abonne index{% endblock %}
+
+{% block body %}
+    <h2 class="py-2 d-flex justify-content-center text-uppercase">Les abonnés</h2>
+
+    <a class="btn btn-outline-primary" href="{{ path('nouveau_abonne') }}"><i class="fas fa-plus"></i> Nouveau abonné</a>
+
+    <table class="table">
+        <thead>
+            <tr class="bg-info text-white fw-bolder">
+                <th>Identifiant</th>
+                <th>Prénom</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for abonne in abonnes|reverse %}
+            <tr>
+                <td>{{ abonne.id }}</td>
+                <td>{{ abonne.prenom }}</td>
+                <td>
+                    <a href="{{ path('infos_abonne', {'id': abonne.id}) }}"><i class="fas fa-eye"></i></a>
+                    <a href="{{ path('modifier_abonne', {'id': abonne.id}) }}"><i class="fas fa-edit"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun abonné trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
